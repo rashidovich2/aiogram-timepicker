@@ -20,42 +20,33 @@ def default(**kwargs):
 
 def _time_button_or_not(row, column):
     if row == 0:
-        if column == 3:
-            return True, 0
-        return False, None
-    if row == 6:
-        if column == 3:
-            return True, 30
-        return False, None
-    if row == 1:
+        return (True, 0) if column == 3 else (False, None)
+    elif row == 1:
         if column == 2:
             return True, 55
-        if column == 4:
-            return True, 5
-        return False, None
-    if row == 2:
+        else:
+            return (True, 5) if column == 4 else (False, None)
+    elif row == 2:
         if column == 1:
             return True, 50
-        if column == 5:
-            return True, 10
-        return False, None
-    if row == 3:
+        else:
+            return (True, 10) if column == 5 else (False, None)
+    elif row == 3:
         if column == 0:
             return True, 45
-        if column == 6:
-            return True, 15
-        return False, None
-    if row == 4:
+        else:
+            return (True, 15) if column == 6 else (False, None)
+    elif row == 4:
         if column == 1:
             return True, 40
-        if column == 5:
-            return True, 20
-        return False, None
-    if row == 5:
+        return (True, 20) if column == 5 else (False, None)
+    elif row == 5:
         if column == 2:
             return True, 35
         if column == 4:
             return True, 25
+    elif row == 6:
+        return (True, 30) if column == 3 else (False, None)
     return False, None
 
 

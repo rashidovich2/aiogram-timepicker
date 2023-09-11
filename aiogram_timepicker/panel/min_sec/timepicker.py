@@ -29,10 +29,18 @@ class TimePicker:
 
     async def _atomic_picker(self, inline_kb: InlineKeyboardMarkup, _time: datetime):
         _tds = (
-            timedelta(minutes=1 if _time.minute + 1 < 60 else - (60 - 1)),
-            timedelta(minutes=-1 if _time.minute - 1 >= 0 else 60 + -1),
-            timedelta(seconds=self.interval if _time.second + self.interval < 60 else - (60 - self.interval)),
-            timedelta(seconds=-self.interval if _time.second - self.interval >= 0 else 60 + -self.interval),
+            timedelta(minutes=1 if _time.minute < 59 else -(60 - 1)),
+            timedelta(minutes=-1 if _time.minute >= 1 else 60 + -1),
+            timedelta(
+                seconds=self.interval
+                if _time.second + self.interval < 60
+                else -(60 - self.interval)
+            ),
+            timedelta(
+                seconds=-self.interval
+                if _time.second - self.interval >= 0
+                else 60 + -self.interval
+            ),
         )
 
         for _td_i in range(len(_tds)):
@@ -119,9 +127,9 @@ class TimePicker:
                 result.Status.SELECTED,
                 minutes=minutes, seconds=seconds,
             )
-        elif act == "CHOOSE_M" or act == "GRP_MIN_MENU":
+        elif act in {"CHOOSE_M", "GRP_MIN_MENU"}:
             kb = await minute.TimePicker(self.interval // 60 if self.interval >= 60 else 1, self.callback)\
-                .change_default_action(
+                    .change_default_action(
                 **adapter.minute.function_replace_default(
                     self.callback, seconds, minutes)
             ).start_picker(minutes)
@@ -130,9 +138,9 @@ class TimePicker:
                 result.Status.CHANGE_MINUTE,
                 minutes=minutes, seconds=seconds,
             )
-        elif act == "CHOOSE_S" or act == "GRP_SEC_MENU":
+        elif act in {"CHOOSE_S", "GRP_SEC_MENU"}:
             kb = await second.TimePicker(self.interval, None)\
-                .change_default_action(
+                    .change_default_action(
                 **adapter.second.function_replace_default(
                     self.callback, seconds, minutes)
             ).start_picker(seconds)

@@ -39,6 +39,21 @@ def _time_button_or_not(row, column):
             return True, 3
         elif column == 6:
             return True, 4
+    elif row == 2:
+        if column == 0:
+            return True, 19
+        elif column == 6:
+            return True, 5
+    elif row == 3:
+        if column == 0:
+            return True, 18
+        elif column == 6:
+            return True, 6
+    elif row == 4:
+        if column == 0:
+            return True, 17
+        elif column == 6:
+            return True, 7
     elif row == 5:
         if column == 0:
             return True, 16
@@ -59,21 +74,6 @@ def _time_button_or_not(row, column):
             return True, 11
         elif column == 5:
             return True, 10
-    elif row == 2:
-        if column == 0:
-            return True, 19
-        elif column == 6:
-            return True, 5
-    elif row == 3:
-        if column == 0:
-            return True, 18
-        elif column == 6:
-            return True, 6
-    elif row == 4:
-        if column == 0:
-            return True, 17
-        elif column == 6:
-            return True, 7
     return False, None
 
 

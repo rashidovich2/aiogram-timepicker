@@ -37,10 +37,18 @@ class TimePicker:
         _tds = (
             timedelta(hours=1),
             timedelta(hours=-1),
-            timedelta(minutes=1 if _time.minute + 1 < 60 else - (60 - 1)),
-            timedelta(minutes=-1 if _time.minute - 1 >= 0 else 60 + -1),
-            timedelta(seconds=self.interval if _time.second + self.interval < 60 else - (60 - self.interval)),
-            timedelta(seconds=-self.interval if _time.second - self.interval >= 0 else 60 + -self.interval),
+            timedelta(minutes=1 if _time.minute < 59 else -(60 - 1)),
+            timedelta(minutes=-1 if _time.minute >= 1 else 60 + -1),
+            timedelta(
+                seconds=self.interval
+                if _time.second + self.interval < 60
+                else -(60 - self.interval)
+            ),
+            timedelta(
+                seconds=-self.interval
+                if _time.second - self.interval >= 0
+                else 60 + -self.interval
+            ),
         )
 
         for _td_i in range(len(_tds)):
@@ -94,8 +102,12 @@ class TimePicker:
         _time = datetime(1971, 1, 1, hour, minute, second)
         _tds = (
             timedelta(hours=1),
-            timedelta(minutes=1 if _time.minute + 1 < 60 else - (60 - 1)),
-            timedelta(seconds=self.interval if _time.second + self.interval < 60 else - (60 - self.interval)),
+            timedelta(minutes=1 if _time.minute < 59 else -(60 - 1)),
+            timedelta(
+                seconds=self.interval
+                if _time.second + self.interval < 60
+                else -(60 - self.interval)
+            ),
         )
         for i in range(self.count_top, 0, -1):
             inline_kb.insert(InlineKeyboardButton(
@@ -147,8 +159,12 @@ class TimePicker:
 
         _tds = (
             timedelta(hours=-1),
-            timedelta(minutes=-1 if _time.minute - 1 >= 0 else 60 + -1),
-            timedelta(seconds=-self.interval if _time.second - self.interval >= 0 else 60 + -self.interval),
+            timedelta(minutes=-1 if _time.minute >= 1 else 60 + -1),
+            timedelta(
+                seconds=-self.interval
+                if _time.second - self.interval >= 0
+                else 60 + -self.interval
+            ),
         )
         for i in range(1, self.count_bottom + 1):
             inline_kb.insert(InlineKeyboardButton(

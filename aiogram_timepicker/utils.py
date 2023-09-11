@@ -8,9 +8,7 @@ class Function:
 
     @property
     def action(self):
-        if self._custom_action:
-            return self._custom_action
-        return self._default_action
+        return self._custom_action if self._custom_action else self._default_action
 
     @action.setter
     def action(self, value):

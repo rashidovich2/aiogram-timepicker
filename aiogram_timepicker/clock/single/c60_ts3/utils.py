@@ -20,58 +20,51 @@ def default(**kwargs):
 
 def _time_button_or_not(row, column):
     if row == 0:
-        if column == 3:
-            return True, 0
-        elif column == 2:
+        if column == 2:
             return True, 57
+        elif column == 3:
+            return True, 0
         elif column == 4:
             return True, 3
         return False, None
     if row == 8:
-        if column == 3:
-            return True, 30
-        elif column == 2:
+        if column == 2:
             return True, 33
+        elif column == 3:
+            return True, 30
         elif column == 4:
             return True, 27
         return False, None
     if row == 1:
         if column == 1:
             return True, 54
-        if column == 5:
-            return True, 6
-        return False, None
-    if row == 2:
+        else:
+            return (True, 6) if column == 5 else (False, None)
+    elif row == 2:
         if column == 0:
             return True, 51
-        if column == 6:
-            return True, 9
-        return False, None
-    if row == 3:
+        else:
+            return (True, 9) if column == 6 else (False, None)
+    elif row == 3:
         if column == 0:
             return True, 48
-        if column == 6:
-            return True, 12
-        return False, None
-    if row == 4:
+        else:
+            return (True, 12) if column == 6 else (False, None)
+    elif row == 4:
         if column == 0:
             return True, 45
-        if column == 6:
-            return True, 15
-        return False, None
-    if row == 5:
+        else:
+            return (True, 15) if column == 6 else (False, None)
+    elif row == 5:
         if column == 0:
             return True, 42
-        if column == 6:
-            return True, 18
-        return False, None
-    if row == 6:
+        else:
+            return (True, 18) if column == 6 else (False, None)
+    elif row == 6:
         if column == 0:
             return True, 39
-        if column == 6:
-            return True, 21
-        return False, None
-    if row == 7:
+        return (True, 21) if column == 6 else (False, None)
+    elif row == 7:
         if column == 1:
             return True, 36
         if column == 5:

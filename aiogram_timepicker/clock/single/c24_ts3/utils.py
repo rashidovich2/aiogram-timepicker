@@ -21,22 +21,22 @@ def default(**kwargs):
 def _time_button_or_not(row, column):
     if row == 0 and column == 3:
         return True, 0
-    if row == 1 and column == 1:
-        return True, 21
-    if row == 1 and column == 5:
-        return True, 3
-    if row == 3 and column == 0:
-        return True, 18
-    if row == 3 and column == 6:
-        return True, 6
-    if row == 5 and column == 1:
-        return True, 15
-    if row == 5 and column == 5:
-        return True, 9
-    if row == 6 and column == 3:
-        return True, 12
-
-    return False, None
+    if row == 1:
+        if column == 1:
+            return True, 21
+        if column == 5:
+            return True, 3
+    elif row == 3:
+        if column == 0:
+            return True, 18
+        if column == 6:
+            return True, 6
+    elif row == 5:
+        if column == 1:
+            return True, 15
+        if column == 5:
+            return True, 9
+    return (True, 12) if row == 6 and column == 3 else (False, None)
 
 
 async def default_create_time_button(timepicker, time_curr, row, column):

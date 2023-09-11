@@ -76,7 +76,7 @@ class Result:
     def editable(self, value: bool):
         if not self._editable:
             AttributeError()
-        self._editable = value is True
+        self._editable = value
 
     @property
     def hours(self):
